@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417161342) do
+ActiveRecord::Schema.define(version: 20140417163010) do
+
+  create_table "assignment_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assignments", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_problems", force: true do |t|
+    t.string   "template_file"
+    t.integer  "random_seed"
+    t.integer  "value"
+    t.string   "status"
+    t.string   "max_attempts"
+    t.boolean  "attempted?"
+    t.string   "last_answer"
+    t.integer  "number_correct"
+    t.integer  "number_incorrect"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
