@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417163010) do
+ActiveRecord::Schema.define(version: 20140428135356) do
 
   create_table "assignment_types", force: true do |t|
     t.string   "name"
@@ -20,12 +20,28 @@ ActiveRecord::Schema.define(version: 20140417163010) do
   end
 
   create_table "assignments", force: true do |t|
+    t.string  "name"
+    t.integer "assignment_type_id"
+  end
+
+  create_table "courses", force: true do |t|
     t.string   "name"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "courses", force: true do |t|
+  create_table "group_users", force: true do |t|
+    t.integer  "group_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_users", ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id", unique: true
+
+  create_table "groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
