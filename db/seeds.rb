@@ -3,55 +3,68 @@
 
 # Create Groups
 group_list = [
-  "guest",
   "student",
   "ta",
   "instructor",
-  "admin"
+  "coordinator"
 ]
 group_list.each do |name|
   Group.create(name: name)
 end
 
 # Create Users
-
-User.create!({
+admin_data = {
   email: 'admin@admin.com',
   password: 'password',
   password_confirmation: 'password'
-})
+}
+User.where(email: 'admin@admin.comUser').exists? || User.create(admin_data)
 puts 'Created admin: admin@admin.com, password: password'
 
-User.create({
+student_data = {
   email: 'student@student.com',
   password: 'password',
   password_confirmation: 'password'
-})
+}
+
+User.where(email: 'student@student.com').exists? || User.create(student_data)
 puts 'Created user: student@student.com, password: password'
 
-date = DateTime.now
+group_admin_data = {
+  user_id: 1,
+  group_id: 5
+}
+GroupUser.where(user_id: 1).exists? || GroupUser.create(group_admin_data)
 
-course_list = [
-  ["College Algebra",date],
-  ["Intermedita Algebra",date],
-  ["Finite Mathematics",date],
-]
-course_list.each do |name,date|
-  Course.create( name: name, start_datetime: date)
-end
-
-assignment_type_list = ['homework','quiz']
-assignment_type_list.each do |type|
-  AssignmentType.create( name: type)
-end
-
-assignment_list = [
-  ['Homework 1', 'homework'],
-  ['Homework 2', 'homework'],
-  ['Quiz 1', 'quiz'],
-  ['Quiz 2', 'quiz'],
-]
-assignment_list.each do |name, type|
-  Assignment.create( name: name, assignment_type_id: type)
-end
-
+group_student_data = {
+  user_id: 2,
+  group_id: 2
+}
+GroupUser.where(user_id: 2).exists? || GroupUser.create(group_student_data)
+#
+# date = DateTime.now
+#
+# course_list = [
+#   ["College Algebra",date],
+#   ["Intermedita Algebra",date],
+#   ["Finite Mathematics",date],
+# ]
+# course_list.each do |name,date|
+#   Course.create( name: name, start_datetime: date)
+# end
+#
+# assignment_type_list = ['homework','quiz']
+# assignment_type_list.each do |type|
+#   AssignmentType.create( name: type)
+# end
+#
+# assignment_list = [
+#   ['Homework 1', 'homework'],
+#   ['Homework 2', 'homework'],
+#   ['Quiz 1', 'quiz'],
+#   ['Quiz 2', 'quiz'],
+# ]
+# assignment_list.each do |name, type|
+#   Assignment.create( name: name, assignment_type_id: type)
+# end
+#
