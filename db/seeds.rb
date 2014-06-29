@@ -13,6 +13,33 @@ group_list.each do |name|
 end
 
 # Create Users
+
+User.create!({
+  email: 'admin@admin.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+puts 'Created admin: admin@admin.com, password: password'
+
+User.create({
+  email: 'student@student.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+puts 'Created user: student@student.com, password: password'
+
+date = DateTime.now
+
+course_list = [
+  ["College Algebra",date],
+  ["Intermedita Algebra",date],
+  ["Finite Mathematics",date],
+]
+group_list.each do |name|
+  Group.create(name: name)
+end
+
+# Create Users
 admin_data = {
   email: 'admin@admin.com',
   password: 'password',
@@ -68,3 +95,12 @@ GroupUser.where(user_id: 2).exists? || GroupUser.create(group_student_data)
 #   Assignment.create( name: name, assignment_type_id: type)
 # end
 #
+# assignment_list = [
+#   ['Homework 1', 'homework'],
+#   ['Homework 2', 'homework'],
+#   ['Quiz 1', 'quiz'],
+#   ['Quiz 2', 'quiz'],
+# ]
+# assignment_list.each do |name, type|
+#   Assignment.create( name: name, assignment_type_id: type)
+# end

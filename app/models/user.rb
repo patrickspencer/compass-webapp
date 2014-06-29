@@ -27,5 +27,4 @@ class User < ActiveRecord::Base
     self.list_groups.include?(:student)
   end
 
-
 end
