@@ -3,8 +3,8 @@ WebworkRails::Application.routes.draw do
 
   root 'welcome#index'
 
-  match :admin, :to => 'admin/dashboard#index', :via => [:get]
-  namespace :admin do
+  match :dash, :to => 'dash/dashboard#index', :via => [:get]
+  namespace :dash do
     resources :assignments
   end
 

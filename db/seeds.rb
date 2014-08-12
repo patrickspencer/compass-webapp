@@ -6,69 +6,47 @@ group_list = [
   "student",
   "ta",
   "instructor",
-  "coordinator"
-]
-group_list.each do |name|
-  Group.create(name: name)
-end
+  "coordinator",
+  "sysadmin" ]
 
-# Create Users
-
-User.create!({
-  email: 'admin@admin.com',
-  password: 'password',
-  password_confirmation: 'password'
-})
-puts 'Created admin: admin@admin.com, password: password'
-
-User.create({
-  email: 'student@student.com',
-  password: 'password',
-  password_confirmation: 'password'
-})
-puts 'Created user: student@student.com, password: password'
-
-date = DateTime.now
-
-course_list = [
-  ["College Algebra",date],
-  ["Intermedita Algebra",date],
-  ["Finite Mathematics",date],
-]
-group_list.each do |name|
-  Group.create(name: name)
-end
+group_list.each { |name| Group.create(name: name) }
 
 # Create Users
 admin_data = {
-  email: 'admin@admin.com',
+  email: 'leuler@gmail.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  first_name: 'Leonard',
+  last_name: 'Euler'
 }
-User.where(email: 'admin@admin.comUser').exists? || User.create(admin_data)
-puts 'Created admin: admin@admin.com, password: password'
+User.exists?(email: 'leuler@gmail.com') || User.create(admin_data)
+puts 'Created user Leonard Euler; email:leuler@gmail.com, password: password'
 
 student_data = {
-  email: 'student@student.com',
+  email: 'jdoe@gmail.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  first_name: 'John',
+  last_name: 'Doe'
 }
 
-User.where(email: 'student@student.com').exists? || User.create(student_data)
-puts 'Created user: student@student.com, password: password'
+User.exists?(email: 'jdoe@gmail.com') || User.create(student_data)
+puts 'Created user John Doe; email: jdoe@gmail.com, password: password'
 
-group_admin_data = {
+group_instructor_data = {
   user_id: 1,
-  group_id: 5
+  group_id: 3
 }
-GroupUser.where(user_id: 1).exists? || GroupUser.create(group_admin_data)
+GroupUser.exists?(user_id: 1) || GroupUser.create(group_instructor_data)
+puts 'Assigned user \'Leonard Euler\' to \'instructor\' group'
 
 group_student_data = {
   user_id: 2,
-  group_id: 2
+  group_id: 1
 }
-GroupUser.where(user_id: 2).exists? || GroupUser.create(group_student_data)
-#
+GroupUser.exists?(user_id: 2) || GroupUser.create(group_student_data)
+puts 'Assigned user \'John Doe\' to \'student\' group'
+
 # date = DateTime.now
 #
 # course_list = [

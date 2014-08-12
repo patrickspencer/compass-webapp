@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :group_users
@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
     !!self.groups.find_by_name(group.to_s)
   end
 
-  def admin?
-    self.list_groups.include?(:coordinator || :instructor || :ta)
+  def staff?
+    staff_groups = [:sysadmin,:coordinator,:instructor,:ta]
+    staff_groups.any? {|g| self.list_groups.include?(g) }
   end
 
   def student?

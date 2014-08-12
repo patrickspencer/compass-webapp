@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebworkRails</title>
+  <title>Compass</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if user_signed_in? && current_user.staff? %>
+  <%= render "layouts/header_staff.html.erb" %>
+<% elsif user_signed_in? && current_user.student? %>
+  <%= render "layouts/header_student.html.erb" %>
+<% end %>
 
-<%= yield %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="notice"><%= notice %></p>
+      <div class="alert"><%= alert %></p>
+      <%= yield %>
+    </div><!-- /.col-xs-12 .col-md-8 -->
+  </div><!-- /.row -->
+</div><!-- /.container-fluid -->
 
 </body>
 </html>
