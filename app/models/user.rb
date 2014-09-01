@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :group_users
   has_many :groups, :through => :group_users
 
+  has_many :assignments
+  has_many :problems, :through => :assignments
+
   def assign_to_group(group)
     self.groups << Group.where(name: group.to_s)
   end
