@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901054717) do
+ActiveRecord::Schema.define(version: 20140901174858) do
 
   create_table "assignment_problems", force: true do |t|
     t.integer  "assignment_id"
@@ -29,12 +29,19 @@ ActiveRecord::Schema.define(version: 20140901054717) do
   create_table "assignments", force: true do |t|
     t.string  "name"
     t.integer "assignment_type_id"
-    t.integer "user_id"
-    t.integer "problem_id"
+    t.integer "course_id"
   end
 
-  add_index "assignments", ["problem_id"], name: "index_assignments_on_problem_id"
-  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id"
+  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
+
+  create_table "course_users", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_users", ["course_id", "user_id"], name: "index_course_users_on_course_id_and_user_id", unique: true
 
   create_table "courses", force: true do |t|
     t.string   "name"
