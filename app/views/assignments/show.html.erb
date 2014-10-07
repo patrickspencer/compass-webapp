@@ -1,0 +1,16 @@
+<h1>Assignments</h1>
+<%# <%= @assignments.each {|b| print b} %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Assignment Type ID</th>
+    <th>Course ID</th>
+  </tr>
+  <% @assignments.each do |assignment| %>
+  <tr>
+    <td><%= assignment.name %></td>
+    <td><%= assignment.assignment_type_id %></td>
+    <td><%= assignment.course_id %></td>
+  </tr>
+  <% end %>
+</table>

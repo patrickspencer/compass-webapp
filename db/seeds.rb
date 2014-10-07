@@ -110,7 +110,7 @@ assignment_type_list.each do |type|
 end
 
 # the first number is the assignment type. 1 = hw, 2 = quiz
-# the second numner refers to the course id. 1 = College Algebra
+# the second number refers to the course id. 1 = College Algebra
 # 2 = Intermediate Algebra
 assignment_list = [
   ['Homework 1', 1, 1],
@@ -126,7 +126,7 @@ assignment_list.each do |name,type|
   (1..10).each do |n|
 
     prob_data = {
-      value: "Assignment \"#{name}\", Prob. value #{n}"
+      value: "Assignment \"#{name}\", Prob. value #{n}",
     }
 
     p = Problem.new(prob_data)

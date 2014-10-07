@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901174858) do
+ActiveRecord::Schema.define(version: 20140915062522) do
 
   create_table "assignment_problems", force: true do |t|
     t.integer  "assignment_id"
     t.integer  "problem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "seed"
   end
 
   create_table "assignment_types", force: true do |t|
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140901174858) do
     t.string  "name"
     t.integer "assignment_type_id"
     t.integer "course_id"
+    t.integer "max_attempts"
   end
 
   add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
@@ -68,10 +70,11 @@ ActiveRecord::Schema.define(version: 20140901174858) do
 
   create_table "problems", force: true do |t|
     t.integer  "value"
-    t.string   "max_attempts"
+    t.string   "major topic"
+    t.string   "minor topic"
+    t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_problem"
   end
 
   create_table "users", force: true do |t|
