@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-WebworkRails::Application.load_tasks
+CompassWebApp::Application.load_tasks

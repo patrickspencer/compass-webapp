@@ -1,4 +1,4 @@
-WebworkRails::Application.routes.draw do
+CompassWebApp::Application.routes.draw do
   devise_for :users
 
   root 'welcome#index'
