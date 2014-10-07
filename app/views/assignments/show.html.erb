@@ -1,16 +1,13 @@
-<h1>Assignments</h1>
-<%# <%= @assignments.each {|b| print b} %>
-<table>
+<h1>Assignment <%= @assignment.id %></h1>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th>Assignment Type ID</th>
     <th>Course ID</th>
   </tr>
-  <% @assignments.each do |assignment| %>
   <tr>
-    <td><%= assignment.name %></td>
-    <td><%= assignment.assignment_type_id %></td>
-    <td><%= assignment.course_id %></td>
+    <td><%= @assignment.name %></td>
+    <td><%= @assignment.assignment_type_id %></td>
+    <td><%= @assignment.course_id %></td>
   </tr>
-  <% end %>
 </table>

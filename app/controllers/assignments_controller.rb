@@ -1,5 +1,8 @@
 class AssignmentsController < ApplicationController
-  def show
+  def index
     @assignments = Assignment.all()
+  end
+  def show
+    @assignment = Assignment.find(params[:id])
   end
 end

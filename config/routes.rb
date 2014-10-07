@@ -8,5 +8,6 @@ CompassWebApp::Application.routes.draw do
     resources :assignments
   end
 
-  get 'assignments/', to: 'assignments#show'
+  get 'assignments/', to: 'assignments#index'
+  get 'assignments/:id', to: 'assignments#show'
 end
