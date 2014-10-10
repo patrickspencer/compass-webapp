@@ -1,4 +1,4 @@
 class Problem < ActiveRecord::Base
-  has_many :assignment_problems
-  has_many :assignments, :through => :assignment_problems
+  belongs_to :user
+  belongs_to :assignment
 end
