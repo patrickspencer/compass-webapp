@@ -1,0 +1,22 @@
+<h1>Assignment <%= @assignment.id %></h1>
+<% @problems.each do |problem| %>
+<table class="table table-striped">
+  <tr>
+    <th>Id</th>
+    <th>Value</th>
+    <th>Major Topic</th>
+    <th>Minor Topic</th>
+    <th>tags</th>
+    <th>seed</th>
+  </tr>
+  <tr>
+    <td><%= problem.id %></td>
+    <td><%= problem.value%></td>
+    <td><%= problem.major_topic %></td>
+    <td><%= problem.minor_topic %></td>
+    <td><%= problem.tags %></td>
+    <td>seed value</td>
+  </tr>
+</table>
+
+<% end %>

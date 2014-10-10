@@ -1,4 +1,4 @@
-module Dash
+module Admin
   class DashboardController < BaseController
     def index
 

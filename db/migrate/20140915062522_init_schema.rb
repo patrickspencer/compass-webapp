@@ -59,8 +59,8 @@ class InitSchema < ActiveRecord::Migration
 
     create_table "problems", force: true do |t|
       t.integer  "value"
-      t.string   "major topic"
-      t.string   "minor topic"
+      t.string   "major_topic"
+      t.string   "minor_topic"
       t.string   "tags"
       t.datetime "created_at"
       t.datetime "updated_at"

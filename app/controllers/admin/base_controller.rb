@@ -1,4 +1,4 @@
-module Dash
+module Admin
   class BaseController < ApplicationController
     # from https://github.com/ryanb/cancan/wiki/Admin-Namespace
     before_filter :verify_staff

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
   create_table "assignment_problems", force: true do |t|
     t.integer  "assignment_id"
     t.integer  "problem_id"
+    t.decimal  "grade"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "seed"
@@ -70,8 +71,8 @@ ActiveRecord::Schema.define(version: 20140915062522) do
 
   create_table "problems", force: true do |t|
     t.integer  "value"
-    t.string   "major topic"
-    t.string   "minor topic"
+    t.string   "major_topic"
+    t.string   "minor_topic"
     t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
