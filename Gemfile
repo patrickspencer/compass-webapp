@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.6'
 
 gem 'bootstrap-sass', '~> 3.2'
 gem 'sass-rails', '~> 4.0.3'
@@ -22,6 +22,7 @@ group :doc do
 end
 
 group :test, :development do
+  gem 'faker'
   gem 'sqlite3'
   gem 'rspec-rails', '>=3.0.1'
   gem 'factory_girl_rails'

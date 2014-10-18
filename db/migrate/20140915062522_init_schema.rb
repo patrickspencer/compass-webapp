@@ -7,10 +7,13 @@ class InitSchema < ActiveRecord::Migration
     end
 
     create_table "assignments", force: true do |t|
-      t.string  "name"
-      t.integer "assignment_type_id"
-      t.integer "course_id"
-      t.integer "max_attempts"
+      t.string   "name"
+      t.integer  "assignment_type_id"
+      t.integer  "course_id"
+      t.integer  "max_problem_attempts"
+      t.datetime "start_datetime"
+      t.datetime "due_datetime"
+      t.datetime "reduced_credit_due_datetime"
     end
 
     add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
@@ -51,6 +54,7 @@ class InitSchema < ActiveRecord::Migration
       t.string   "user_id"
       t.string   "assignment_id"
       t.string   "problem_template_id"
+      t.string   "value"
       t.integer  "seed"
       t.string   "grade"
       t.string   "attempts"
@@ -63,7 +67,7 @@ class InitSchema < ActiveRecord::Migration
 
     create_table "users", force: true do |t|
       t.string   "email",                  default: "", null: false
-      t.string   "id_string",              default: "", null: false
+      t.string   "id_string",                 default: "", null: false
       t.string   "encrypted_password",     default: "", null: false
       t.string   "reset_password_token"
       t.datetime "reset_password_sent_at"
@@ -75,7 +79,6 @@ class InitSchema < ActiveRecord::Migration
       t.string   "last_sign_in_ip"
       t.datetime "created_at"
       t.datetime "updated_at"
-      t.integer  "roles_mask"
       t.string   "first_name"
       t.string   "last_name"
     end

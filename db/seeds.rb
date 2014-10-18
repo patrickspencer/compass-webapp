@@ -14,6 +14,7 @@ group_list.each { |name| Group.create(name: name) }
 # Create Users
 admin_data = {
   email: 'leuler@gmail.com',
+  id_string: 'leuler',
   password: 'password',
   password_confirmation: 'password',
   first_name: 'Leonard',
@@ -27,6 +28,7 @@ end
 
 student_data = {
   email: 'jdoe@gmail.com',
+  id_string: 'jdoe',
   password: 'password',
   password_confirmation: 'password',
   first_name: 'John',
@@ -39,7 +41,7 @@ unless User.exists?(email: 'jdoe@gmail.com')
 end
 
 group_instructor_data = {
-  user_id: 1,
+  user_id: 1, # user leuler
   group_id: 3 # group id 3 is instructor
 }
 
@@ -112,34 +114,58 @@ end
 # the first number is the assignment type. 1 = hw, 2 = quiz
 # the second number refers to the course id. 1 = College Algebra
 # 2 = Intermediate Algebra
+
+START_DATE = DateTime.parse('3rd October 2014 06:35')
 assignment_list = [
-  ['Homework 1', 1, 1],
-  ['Homework 2', 1, 1],
-  ['Quiz 1', 2, 1]
+  {
+    name: 'Homework 1',
+    assignment_type_id: 1,
+    course_id: 1,
+    max_problem_attempts: 3,
+    start_datetime: START_DATE,
+    due_datetime: DateTime.parse('10th October 2014 08:00'),
+    reduced_credit_due_datetime: DateTime.parse('11th October 2014 08:00'),
+  },
+  {
+      name: 'Homework 2',
+      assignment_type_id: 1,
+      course_id: 1,
+      max_problem_attempts: 3,
+      start_datetime: START_DATE,
+      due_datetime: DateTime.parse('15th November 2014 13:10'),
+      reduced_credit_due_datetime:DateTime.parse('16th November 2014 13:10')
+  },
+  {
+      name: 'Quiz 1',
+      assignment_type_id: 2,
+      course_id: 1,
+      max_problem_attempts: 3,
+      start_datetime: START_DATE,
+      due_datetime: DateTime.parse('20th November 2014 05:00'),
+      reduced_credit_due_datetime: DateTime.parse('21st November 2014 05:00')
+  },
 ]
 
-assignment_list.each do |name, type, course_id|
-  Assignment.create( name: name, assignment_type_id: type, course_id: course_id)
+assignment_list.each do |assignment_data|
+  Assignment.create(assignment_data)
 end
 
-assignment_list.each do |name,type|
+
+assignment_list.each do |assignment|
+
   (1..10).each do |n|
-
-    prob_data = {
-      value: "Assignment \"#{name}\", Prob. value #{n}",
-    }
-
-    p = Problem.new(prob_data)
-    p.save!
-
+    prng = Random.new
     problem_data = {
-      problem_id: p.id,
-      assignment_id: Assignment.where(name: name)[0].id
+      problem_template_id: 1,
+      value: "Assignment \"#{assignment[:name]}\", Prob. value #{n}",
+      assignment_id: Assignment.where(name: assignment[:name])[0].id,
+      seed: prng.rand(1..100),
     }
 
-    unless AssignmentProblem.exists?(problem_data)
-      AssignmentProblem.create(problem_data)
-      puts "Created problem #{p.id} and assigned it to #{name}"
+    unless Problem.exists?(problem_data)
+      prob = Problem.new(problem_data)
+      prob.save
+      puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
     end
   end
 end
