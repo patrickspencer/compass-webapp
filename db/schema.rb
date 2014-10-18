@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140915062522) do
 
-  create_table "assignment_problems", force: true do |t|
-    t.integer  "assignment_id"
-    t.integer  "problem_id"
-    t.decimal  "grade"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "seed"
-  end
-
   create_table "assignment_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -29,10 +20,13 @@ ActiveRecord::Schema.define(version: 20140915062522) do
   end
 
   create_table "assignments", force: true do |t|
-    t.string  "name"
-    t.integer "assignment_type_id"
-    t.integer "course_id"
-    t.integer "max_attempts"
+    t.string   "name"
+    t.integer  "assignment_type_id"
+    t.integer  "course_id"
+    t.integer  "max_problem_attempts"
+    t.datetime "start_datetime"
+    t.datetime "due_datetime"
+    t.datetime "reduced_credit_due_datetime"
   end
 
   add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
@@ -70,7 +64,13 @@ ActiveRecord::Schema.define(version: 20140915062522) do
   end
 
   create_table "problems", force: true do |t|
-    t.integer  "value"
+    t.string   "user_id"
+    t.string   "assignment_id"
+    t.string   "problem_template_id"
+    t.string   "value"
+    t.integer  "seed"
+    t.string   "grade"
+    t.string   "attempts"
     t.string   "major_topic"
     t.string   "minor_topic"
     t.string   "tags"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "id_string",              default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -91,12 +92,12 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "roles_mask"
     t.string   "first_name"
     t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["id_string"], name: "index_users_on_id_string", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

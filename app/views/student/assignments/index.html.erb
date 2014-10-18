@@ -4,15 +4,22 @@
   <tr>
     <th>Name</th>
     <th>Id</th>
-    <th>Assignment Type ID</th>
+    <th>Assignment Type</th>
     <th>Course ID</th>
+    <th>Start Date</th>
+    <th>Due Date</th>
+    <th>Reduced Credit Due Date</th>
   </tr>
   <% @assignments.each do |assignment| %>
-  <tr>
+  <% date_format = "%e %b at %l:%M %P" %>
+   <tr>
     <td><%= link_to "#{assignment.name}", controller: "assignments", action: "show", id: assignment.id%></td>
     <td><%= assignment.id %></td>
-    <td><%= assignment.assignment_type_id %></td>
+    <td><%= assignment.assignment_type_id == 1 ? "Homework" : "Quiz"; %></td>
     <td><%= assignment.course_id %></td>
+    <td><%= assignment.start_datetime.strftime(date_format) %></td>
+    <td><%= assignment.due_datetime.strftime(date_format) %></td>
+    <td><%= assignment.reduced_credit_due_datetime.strftime(date_format) %></td>
   </tr>
   <% end %>
 </table>
