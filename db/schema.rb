@@ -63,19 +63,25 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  create_table "problems", force: true do |t|
-    t.string   "user_id"
-    t.string   "assignment_id"
-    t.string   "problem_template_id"
+  create_table "problem_templates", force: true do |t|
     t.string   "value"
-    t.integer  "seed"
-    t.string   "grade"
-    t.string   "attempts"
     t.string   "major_topic"
     t.string   "minor_topic"
     t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "problems", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.string   "value"
+    t.integer  "seed"
+    t.string   "grade"
+    t.string   "attempts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "problem_template_id"
   end
 
   create_table "users", force: true do |t|

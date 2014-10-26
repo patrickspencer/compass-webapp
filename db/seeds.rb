@@ -152,20 +152,29 @@ end
 
 
 assignment_list.each do |assignment|
-
   (1..10).each do |n|
     prng = Random.new
     problem_data = {
-      problem_template_id: 1,
-      value: "Assignment \"#{assignment[:name]}\", Prob. value #{n}",
       assignment_id: Assignment.where(name: assignment[:name])[0].id,
+      user_id: 2,
       seed: prng.rand(1..100),
+      problem_template_id: 1,
     }
 
-    unless Problem.exists?(problem_data)
-      prob = Problem.new(problem_data)
-      prob.save
-      puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
+    prob = Problem.new(problem_data)
+    prob.save
+    puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
+
+    problem_template_data = {
+      value: "Assignment \"#{assignment[:name]}\", Prob. value #{n}",
+      major_topic: "algebra",
+      minor_topic: "equations",
+    }
+
+    unless ProblemTemplate.exists?(problem_template_data)
+      prob_template = ProblemTemplate.new(problem_template_data)
+      prob_template.save
+      puts "Created problem template #{prob_template.id}."
     end
   end
 end

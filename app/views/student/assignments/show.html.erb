@@ -1,9 +1,10 @@
 <h1>Assignment <%= @assignment.id %></h1>
-<% @problems.each do |problem| %>
+<% @problem_hash.each do |item| %>
 <table class="table table-striped">
   <tr>
     <th>Id</th>
     <th>User Id</th>
+    <th>Template Id</th>
     <th>Value</th>
     <th>Major Topic</th>
     <th>Minor Topic</th>
@@ -11,13 +12,14 @@
     <th>seed</th>
   </tr>
   <tr>
-    <td><%= problem.id %></td>
-    <td><%= problem.user_id %></td>
-    <td><%= problem.value%></td>
-    <td><%= problem.major_topic %></td>
-    <td><%= problem.minor_topic %></td>
-    <td><%= problem.tags %></td>
-    <td><%= problem.seed %></td>
+    <td><%= item[:problem].id %></td>
+    <td><%= item[:problem].user_id %></td>
+    <td><%= item[:template].id %></td>
+    <td><%= item[:template].value %></td>
+    <td><%= item[:template].major_topic %></td>
+    <td><%= item[:template].minor_topic %></td>
+    <td><%= item[:template].tags %></td>
+    <td><%= item[:problem].seed %></td>
   </tr>
 </table>
 
