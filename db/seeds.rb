@@ -166,7 +166,7 @@ assignment_list.each do |assignment|
     puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
 
     problem_template_data = {
-      value: "Assignment \"#{assignment[:name]}\", Prob. value #{n}",
+      value: "print \"hello world!\";",
       major_topic: "algebra",
       minor_topic: "equations",
     }

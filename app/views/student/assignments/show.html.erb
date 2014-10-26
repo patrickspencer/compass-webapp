@@ -6,6 +6,7 @@
     <th>User Id</th>
     <th>Template Id</th>
     <th>Value</th>
+    <th>Interpreted Value</th>
     <th>Major Topic</th>
     <th>Minor Topic</th>
     <th>tags</th>
@@ -16,6 +17,7 @@
     <td><%= item[:problem].user_id %></td>
     <td><%= item[:template].id %></td>
     <td><%= item[:template].value %></td>
+    <td><%= %x(perl -e '#{item[:template].value}') %></td>
     <td><%= item[:template].major_topic %></td>
     <td><%= item[:template].minor_topic %></td>
     <td><%= item[:template].tags %></td>
