@@ -1,5 +1,5 @@
-<h1>Assignment <%= @assignment.id %></h1>
-<% @problem_hash.each do |item| %>
+<h1>Assignment <%= params[:id] %></h1>
+<% @problems.each do |problem| %>
 <table class="table table-striped">
   <tr>
     <th>Id</th>
@@ -13,16 +13,17 @@
     <th>seed</th>
   </tr>
   <tr>
-    <td><%= item[:problem].id %></td>
-    <td><%= item[:problem].user_id %></td>
-    <td><%= item[:template].id %></td>
-    <td><%= item[:template].value %></td>
-    <td><%= %x(perl -e '#{item[:template].value}') %></td>
-    <td><%= item[:template].major_topic %></td>
-    <td><%= item[:template].minor_topic %></td>
-    <td><%= item[:template].tags %></td>
-    <td><%= item[:problem].seed %></td>
+    <td><%= problem[:id] %></td>
+    <td><%= problem[:user_id] %></td>
+    <td><%= problem[:template_id] %></td>
+    <td><%= problem[:template_value] %></td>
+    <td><%= problem[:template_value_compiled] %></td>
+    <td><%= problem[:template_major_topic] %></td>
+    <td><%= problem[:template_minor_topic] %></td>
+    <td><%= problem[:template_tags] %></td>
+    <td><%= problem[:seed] %></td>
   </tr>
 </table>
 
 <% end %>
+<%= @string_fp =%>
