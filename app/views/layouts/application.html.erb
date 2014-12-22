@@ -2,23 +2,17 @@
 <html>
 <head>
   <title>Compass</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<% if user_signed_in? && current_user.staff? %>
-  <%= render "layouts/header_staff.html.erb" %>
-<% elsif user_signed_in? && current_user.student? %>
-  <%= render "layouts/header_student.html.erb" %>
-<% end %>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="notice"><%= notice %></p>
       <div class="alert"><%= alert %></p>
+      Default application controller
       <%= yield %>
     </div><!-- /.col-xs-12 .col-md-8 -->
   </div><!-- /.row -->

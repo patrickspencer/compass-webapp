@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compass</title>
+  <%= stylesheet_link_tag    "student/main", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "student/main.js", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render "student/header.html.erb" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="notice"><%= notice %></p>
+        <div class="alert"><%= alert %></p>
+          <%= yield %>
+        </div><!-- /.col-xs-12 .col-md-8 -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+</body>
+</html>
