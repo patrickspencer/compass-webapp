@@ -17,3 +17,12 @@
 /tmp
 
 .idea/*
+
+# ignore the Ruby Version manager (rvm)
+.rvmrc
+.ruby-version
+.ruby-gemset
+.rbenv
+bundler_stubs/*
+
+doc/*

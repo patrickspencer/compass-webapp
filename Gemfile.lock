@@ -204,7 +204,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   json (= 1.8.1)
-  pg (>= 0.17)
+  pg (= 0.17.1)
   rails (= 4.2.0)
   rspec-rails (>= 3.0.1)
   sass-rails (~> 5)
