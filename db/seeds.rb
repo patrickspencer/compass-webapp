@@ -45,20 +45,17 @@ group_instructor_data = {
   group_id: 3 # group id 3 is instructor
 }
 
-unless GroupUser.exists?(user_id: 1)
-  GroupUser.create(group_instructor_data)
-  puts 'Assigned user Leonard Euler to instructor group'
-end
+GroupUser.find_or_create_by(group_instructor_data)
+puts 'Assigned user Leonard Euler to instructor group'
 
 group_student_data = {
-  user_id: 2,
+  user_id: 2, # user jdoe
   group_id: 1 # group id 1 student
 }
 
-unless GroupUser.exists?(user_id: 2)
-  GroupUser.create(group_student_data)
-  puts 'Assigned user John Doe to student group'
-end
+GroupUser.find_or_create_by(group_student_data)
+puts 'Assigned user John Doe to student group'
+
 
 date = DateTime.now
 
@@ -147,7 +144,7 @@ assignment_list = [
 ]
 
 assignment_list.each do |assignment_data|
-  Assignment.create(assignment_data)
+  Assignment.find_or_create_by(assignment_data)
 end
 
 
@@ -178,3 +175,11 @@ assignment_list.each do |assignment|
     end
   end
 end
+
+assignment_user_data = {
+  assignment_id: 1,
+  user_id: 2, # user jdoe
+}
+
+AssignmentUser.find_or_create_by(assignment_user_data)
+puts 'Assigned user jdoe to assignment 1'

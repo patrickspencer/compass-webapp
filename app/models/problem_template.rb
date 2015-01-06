@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: problem_templates
+#
+#  id          :integer          not null, primary key
+#  value       :string
+#  major_topic :string
+#  minor_topic :string
+#  tags        :string
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class ProblemTemplate < ActiveRecord::Base
   belongs_to :problem
   has_many :problems

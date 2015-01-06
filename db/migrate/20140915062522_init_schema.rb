@@ -18,6 +18,13 @@ class InitSchema < ActiveRecord::Migration
 
     add_index :assignments, [:course_id], name: :index_assignments_on_course_id
 
+    create_table :assignment_users, force: true do |t|
+      t.integer :user_id, null: false, index: true
+      t.integer :assignment_id, null: false, index: true
+      t.datetime :created_at
+      t.datetime :updated_at
+    end
+
     create_table :course_users, force: true do |t|
       t.integer  :course_id
       t.integer  :user_id

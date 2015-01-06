@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'json', '1.8.1'
 gem 'jbuilder', '~> 1.2'
 gem 'pg', '0.17.1'
+gem 'annotate', '~> 2.6.5'
 gem 'devise'
 gem 'cancan'
 

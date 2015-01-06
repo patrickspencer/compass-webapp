@@ -1,7 +1,8 @@
 module Student
   class AssignmentsController < BaseController
     def index
-      @assignments = Assignment.all()
+      user = current_user
+      @assignments = user.assignments
     end
     def show
       @problems = Assignment.get_assignment_problems(params[:id])

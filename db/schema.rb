@@ -13,13 +13,23 @@
 
 ActiveRecord::Schema.define(version: 20140915062522) do
 
-  create_table "assignment_types", force: true do |t|
+  create_table "assignment_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "assignments", force: true do |t|
+  create_table "assignment_users", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "assignment_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignment_users", ["assignment_id"], name: "index_assignment_users_on_assignment_id"
+  add_index "assignment_users", ["user_id"], name: "index_assignment_users_on_user_id"
+
+  create_table "assignments", force: :cascade do |t|
     t.string   "name"
     t.integer  "assignment_type_id"
     t.integer  "course_id"
@@ -31,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
 
   add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
 
-  create_table "course_users", force: true do |t|
+  create_table "course_users", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -40,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
 
   add_index "course_users", ["course_id", "user_id"], name: "index_course_users_on_course_id_and_user_id", unique: true
 
-  create_table "courses", force: true do |t|
+  create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
@@ -48,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  create_table "group_users", force: true do |t|
+  create_table "group_users", force: :cascade do |t|
     t.integer  "group_id",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at"
@@ -57,13 +67,13 @@ ActiveRecord::Schema.define(version: 20140915062522) do
 
   add_index "group_users", ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id", unique: true
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "problem_templates", force: true do |t|
+  create_table "problem_templates", force: :cascade do |t|
     t.string   "value"
     t.string   "major_topic"
     t.string   "minor_topic"
@@ -72,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  create_table "problems", force: true do |t|
+  create_table "problems", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "assignment_id"
     t.string   "value"
@@ -84,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.integer  "problem_template_id"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "id_string",              default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
