@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:id_string]
 
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :email, :presence => true
+  validates :id_string, :presence => true
+
   has_many :group_users
   has_many :groups, :through => :group_users
 

@@ -1,88 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Dashboard | Dashboard</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="images/icons/favicon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/favicon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/favicon-114x114.png">
-    <!--Loading bootstrap css-->
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <%= stylesheet_link_tag "admin/jquery-ui-1.10.4.custom.min", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/animate.min", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/animate", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/all", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/style-responsive", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/main", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "admin/pace", media: "all", "data-turbolinks-track" => true %>
+  <title>Compass</title>
+  <%= stylesheet_link_tag    "admin/main.css", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "admin/main.js", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= csrf_meta_tags %>
 </head>
 <body>
-    <div>
-        <!--BEGIN BACK TO TOP-->
-        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
-        <!--END BACK TO TOP-->
-        <!--BEGIN TOPBAR-->
-        <%= render "admin/admin_topbar" %>
-        <!--END TOPBAR-->
-        <div id="wrapper">
-        <!--BEGIN SIDEBAR MENU-->
-        <%= render "admin/admin_sidebar" %>
-        <!--END SIDEBAR MENU-->
-            <!--BEGIN PAGE WRAPPER-->
-            <div id="page-wrapper">
-                <!--BEGIN TITLE & BREADCRUMB PAGE-->
-                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-                    <div class="page-header pull-left">
-                        <div class="page-title">
-                            Dashboard</div>
-                    </div>
-                    <ol class="breadcrumb page-breadcrumb pull-right">
-                        <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                    <div class="clearfix">
-                    </div>
-                </div>
-                <!--END TITLE & BREADCRUMB PAGE-->
-                <!--BEGIN CONTENT-->
 
-                <div class="notice"><%= notice %></p>
-                <div class="alert"><%= alert %></p>
-                <%= yield %>
-                    <!--END CONTENT-->
-                <!--BEGIN FOOTER-->
-                <%= render "admin/admin_footer" %>
-                <!--END FOOTER-->
-            </div>
-            <!--END PAGE WRAPPER-->
-        </div>
-    </div>
-    <%= javascript_include_tag "admin/main.js" %>
-    <%= javascript_include_tag "admin/metisMenu.js" %>
-    <%= javascript_include_tag "admin/jquery-1.10.2.min.js" %>
-    <%= javascript_include_tag "admin/jquery-ui.js" %>
-    <%= javascript_include_tag "admin/jquery-migrate-1.2.1.min.js" %>
-    <%= javascript_include_tag "admin/bootstrap-hover-dropdown.js" %>
-    <%= javascript_include_tag "admin/html5shiv.js" %>
-    <%= javascript_include_tag "admin/index.js" %>
-    <%= javascript_include_tag "admin/respond.min.js" %>
-    <%= javascript_include_tag "admin/jquery.slimscroll.js" %>
-    <%= javascript_include_tag "admin/jquery.cookie.js" %>
-    <%= javascript_include_tag "admin/icheck.min.js" %>
-    <%= javascript_include_tag "admin/custom.min.js" %>
-    <%= javascript_include_tag "admin/jquery.menu.js" %>
-    <%= javascript_include_tag "admin/pace.min.js" %>
-    <%= javascript_include_tag "admin/holder.js" %>
-    <%= javascript_include_tag "admin/responsive-tabs.js" %>
-    <!--CORE JAVASCRIPT-->
+<%= render "admin/partials/admin_header.html.erb" %>
 
-</script>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "admin/partials/admin_sidebar.html.erb" %>
+    </div><!-- /.col-md-3 /.sidebar-->
+    <div class="col-md-9">
+      <%= yield %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      </div><!-- /.col-md-9 -->
+  </div><!-- /.row -->
+</div><!-- /.container-fluid -->
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>
-
