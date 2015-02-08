@@ -1,4 +1,4 @@
 Compass
 =======
 
-Compass is a web frontend for online math homework.
+Compass webapp is an experimental web frontend for an online course management system.
