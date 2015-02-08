@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 
-.idea/*
+.idea/
 
 # ignore the Ruby Version manager (rvm)
 .rvmrc
@@ -26,3 +26,4 @@
 bundler_stubs/*
 
 doc/*
+
