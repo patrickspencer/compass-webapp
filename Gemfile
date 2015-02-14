@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'json', '1.8.1'
 gem 'jbuilder', '~> 1.2'
-gem 'pg', '0.17.1'
+gem 'pg', '0.18.1'
 gem 'foreman', '0.77.0'
 gem 'annotate', '~> 2.6.5'
 gem 'devise'
@@ -34,7 +34,7 @@ end
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
