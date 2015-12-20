@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140915062522) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assignment_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  add_index "assignment_users", ["assignment_id"], name: "index_assignment_users_on_assignment_id"
-  add_index "assignment_users", ["user_id"], name: "index_assignment_users_on_user_id"
+  add_index "assignment_users", ["assignment_id"], name: "index_assignment_users_on_assignment_id", using: :btree
+  add_index "assignment_users", ["user_id"], name: "index_assignment_users_on_user_id", using: :btree
 
   create_table "assignments", force: :cascade do |t|
     t.string   "name"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "reduced_credit_due_datetime"
   end
 
-  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
+  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id", using: :btree
 
   create_table "course_users", force: :cascade do |t|
     t.integer  "course_id"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  add_index "course_users", ["course_id", "user_id"], name: "index_course_users_on_course_id_and_user_id", unique: true
+  add_index "course_users", ["course_id", "user_id"], name: "index_course_users_on_course_id_and_user_id", unique: true, using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.datetime "updated_at"
   end
 
-  add_index "group_users", ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id", unique: true
+  add_index "group_users", ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id", unique: true, using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -112,8 +115,8 @@ ActiveRecord::Schema.define(version: 20140915062522) do
     t.string   "last_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["id_string"], name: "index_users_on_id_string", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["id_string"], name: "index_users_on_id_string", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

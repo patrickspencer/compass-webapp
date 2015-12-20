@@ -14,4 +14,5 @@ class GroupUser < ActiveRecord::Base
   validates :group_id, presence: true
   belongs_to :group
   belongs_to :user
+  accepts_nested_attributes_for :group
 end

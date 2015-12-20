@@ -1,21 +1,28 @@
 <div class="page-header">
-  <h2>users</h2>
+  <h2>Users</h2>
 </div>
-  <table class="table table-striped">
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+<%= link_to "Create new user", controller: "users", action: "new" %>
+<table class="table table-striped">
   <tr>
     <th>Id</th>
     <th>Last Name</th>
     <th>First Name</th>
-    <th>Action</th>
+    <th></th>
+    <th></th>
   </tr>
   <% @users.each do |user| %>
    <tr>
-    <td><%= link_to "#{user.id_string}", controller: "users", action: "show", id: user.id %></td>
+     <td><%= link_to "#{user.id_string}", admin_user_path(user) %></td>
     <td><%= "#{user.last_name}" %></td>
     <td><%= "#{user.first_name}" %></td>
-    <td><%= link_to "Delete", @user, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
+    <td>
+      <%= link_to "Delete", admin_user_path(user), :method => :delete %>
+  </td>
   </tr>
   <% end %>
 </table>
-<%= link_to "Create new user", controller: "users", action: "new" %>
 
