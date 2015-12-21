@@ -7,20 +7,16 @@
 <%= link_to "Create new assignment", controller: "assignments", action: "new" %>
 <table class="table table-striped">
   <tr>
-    <th>Id</th>
-    <th>Last Name</th>
-    <th>First Name</th>
+    <th>Name</th>
     <th></th>
     <th></th>
   </tr>
   <% @assignments.each do |assignment| %>
    <tr>
-     <td><%= link_to "#{user.id_string}", admin_user_path(user) %></td>
-    <td><%= "#{user.last_name}" %></td>
-    <td><%= "#{user.first_name}" %></td>
-    <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
+   <td><%= assignment.name %></td>
+    <td><%= link_to "Edit", edit_admin_assignment_path(assignment) %></td>
     <td>
-      <%= link_to "Delete", admin_user_path(user), :method => :delete %>
+      <%= link_to "Delete", admin_assignment_path(assignment), :method => :delete %>
   </td>
   </tr>
   <% end %>

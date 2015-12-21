@@ -3,11 +3,14 @@
      data-position="right" class="navbar-default navbar-static-side">
   <div class="sidebar-collapse menu-scroll">
     <ul class="list-group">
-      <a href="/admin/users" class="list-group-item">
+      <a href="<%= admin_users_url(:only_path => true) %>" class="list-group-item">
         <i class="fa fa-user fa-fw"></i>
          Users
       </a>
-      <a href="/admin/users" class="list-group-item">Cras justo odio</a>
+      <a href="<%= admin_assignments_url(:only_path => true) %>" class="list-group-item">
+        <i class="fa fa-user fa-fw"></i>
+         Assignments
+      </a>
       <a href="/admin/users" class="list-group-item">Cras justo odio</a>
       <a href="/admin/users" class="list-group-item">Cras justo odio</a>
     </ul>
