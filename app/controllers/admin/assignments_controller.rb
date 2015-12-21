@@ -35,8 +35,7 @@ module Admin
     private
 
       def assignment_params
-        params.require(:assignment).permit(:first_name, :last_name, :id_string,
-                                     :email, :password, :password_confirmation)
+        params.require(:assignment).permit(:name, :start_date, :end_date)
       end
 
   end
