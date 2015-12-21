@@ -4,7 +4,17 @@
 </div>
 
 <%= form_for [:admin, @user] do |f| %>
-  <%= render 'admin/shared/error_messages' %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :first_name %>
     <%= f.text_field :first_name, class: 'form-control'  %>
@@ -37,10 +47,10 @@
 
   <%= f.fields_for :group_user do |group_user_form| %>
     <%= group_user_form.label :group_id, "Group" %>
-    <%= group_user_form.collection_select :group_id, Group.order(:name), :id, :name, :class => 'form-control' %>
+    <%= group_user_form.collection_select :group_id, Group.order(:id), :id, :name,{}, {:class => 'form-control'} %>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <%= f.submit "Create user", class: "btn btn-primary" %>
   </div>
 <% end %>

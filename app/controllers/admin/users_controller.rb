@@ -25,6 +25,9 @@ module Admin
     def create
       @user = User.new(user_params)
       if @user.save
+        @group_user = GroupUser.new(:user_id => @user.id,
+                            :group_id => params[:user][:group_user][:group_id].to_i)
+        @group_user.save
         flash[:success] = "Created #{@user.first_name} #{@user.last_name}"
         redirect_to :controller => 'admin/users', :action => :index
       else
