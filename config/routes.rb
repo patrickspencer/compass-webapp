@@ -1,7 +1,10 @@
 CompassWebApp::Application.routes.draw do
+  namespace :student do
+    resources :problems
+  end
   devise_for :users, controllers: {registrations: 'users/registrations'}
 
-  root 'root#index'
+  root 'student/problems#index'
 
   get 'admin', to: 'admin/welcome#index', as: 'admin_welcome'
   namespace :admin do
@@ -12,6 +15,7 @@ CompassWebApp::Application.routes.draw do
   get '/student', to: 'student/welcome#index', as: 'student_welcome'
   namespace :student do
     resources :assignments
+    resources :problems
   end
 
   devise_scope :user do
