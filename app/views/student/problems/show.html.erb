@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
+
 <ul>
   <li>
-    Problem id:<%= @problem.id %>
+    Problem template value: <%= @problem.problem_template.value  %>
+  </li>
+  <li>
+    Problem id: <%= @problem.id %>
+  </li>
+  <li>
+    Problem seed: <%= @problem.seed %>
   </li>
 </ul>
 <%= link_to 'Back', student_problems_path %>
