@@ -1,6 +1,5 @@
 module Admin
   class BaseController < ApplicationController
-    # from https://github.com/ryanb/cancan/wiki/Admin-Namespace
     layout "admin_base.html.erb"
     before_filter :verify_staff
     private
