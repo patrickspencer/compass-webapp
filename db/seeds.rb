@@ -140,32 +140,21 @@ assignment_list = []
 end
 
 
-# assignment_list.each do |assignment|
-#   (1..10).each do |n|
-#     prng = Random.new
-#     problem_data = {
-#       assignment_id: Assignment.where(name: assignment[:name])[0].id,
-#       user_id: 2,
-#       seed: prng.rand(1..100),
-#       problem_template_id: 1,
-#     }
-#
-#     unless Problem.exists?(problem_data)
-#       prob = Problem.new(problem_data)
-#       prob.save
-#       puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
-#     end
-#
-#   end
-# end
+5.times do |n|
+  problem_data = {
+    assignment_id: 2,
+    user_id: 2,
+    attempts: 3,
+    seed: rand(1..100),
+    problem_template_id: rand(20),
+  }
 
-# assignment_user_data = {
-#   assignment_id: 1,
-#   user_id: 2, # user jdoe
-# }
-#
-# AssignmentUser.find_or_create_by(assignment_user_data)
-# puts 'Assigned user jdoe to assignment 1'
+  unless Problem.exists?(problem_data)
+    prob = Problem.new(problem_data)
+    prob.save
+    puts "Created problem #{prob.id}"
+  end
+end
 
 4.times do |n|
   major_topics = ['algebra','topology','calculus']
