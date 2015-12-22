@@ -1,5 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+require 'faker'
 
 # Create Groups
 group_list = [
@@ -49,18 +50,20 @@ group_instructor_data = {
   user_id: 1, # user leuler
   group_id: 3 # group id 3 is instructor
 }
-
-GroupUser.find_or_create_by(group_instructor_data)
-puts 'Assigned user Leonard Euler to instructor group'
+unless GroupUser.exists?(group_instructor_data)
+  GroupUser.create(group_instructor_data)
+  puts 'Assigned user Leonard Euler to instructor group'
+end
 
 group_student_data = {
   user_id: 2, # user jdoe
   group_id: 1 # group id 1 student
 }
 
-GroupUser.find_or_create_by(group_student_data)
-puts 'Assigned user John Doe to student group'
-
+unless GroupUser.exists?(group_student_data)
+  GroupUser.create(group_student_data)
+  puts 'Assigned user John Doe to student group'
+end
 
 date = DateTime.now
 
@@ -120,78 +123,62 @@ end
 # the second number refers to the course id. 1 = College Algebra
 # 2 = Intermediate Algebra
 
-START_DATE = DateTime.parse('3rd October 2015 06:35')
-assignment_list = [
-  {
-    name: 'Homework 1',
-    assignment_type_id: 1,
+assignment_list = []
+5.times do |n|
+  assignment_data = {
+    name: 'Quiz #{n}',
+    assignment_type_id: 2,
     course_id: 1,
     max_problem_attempts: 3,
-    start_datetime: START_DATE,
-    due_datetime: DateTime.parse('10th October 2014 08:00'),
-    reduced_credit_due_datetime: DateTime.parse('11th October 2014 08:00'),
+    start_datetime: DateTime.parse('3rd October 2015 06:35'),
+    due_datetime: DateTime.parse('20th November 2014 05:00'),
+    reduced_credit_due_datetime: DateTime.parse('21st November 2014 05:00')
   },
-  {
-      name: 'Homework 2',
-      assignment_type_id: 1,
-      course_id: 1,
-      max_problem_attempts: 3,
-      start_datetime: START_DATE,
-      due_datetime: DateTime.parse('15th November 2014 13:10'),
-      reduced_credit_due_datetime:DateTime.parse('16th November 2014 13:10')
-  },
-  {
-      name: 'Quiz 1',
-      assignment_type_id: 2,
-      course_id: 1,
-      max_problem_attempts: 3,
-      start_datetime: START_DATE,
-      due_datetime: DateTime.parse('20th November 2014 05:00'),
-      reduced_credit_due_datetime: DateTime.parse('21st November 2014 05:00')
-  },
-]
-
-assignment_list.each do |assignment_data|
   unless Assignment.exists?(assignment_data)
     Assignment.find_or_create_by(assignment_data)
   end
 end
 
 
-assignment_list.each do |assignment|
-  (1..10).each do |n|
-    prng = Random.new
-    problem_data = {
-      assignment_id: Assignment.where(name: assignment[:name])[0].id,
-      user_id: 2,
-      seed: prng.rand(1..100),
-      problem_template_id: 1,
-    }
+# assignment_list.each do |assignment|
+#   (1..10).each do |n|
+#     prng = Random.new
+#     problem_data = {
+#       assignment_id: Assignment.where(name: assignment[:name])[0].id,
+#       user_id: 2,
+#       seed: prng.rand(1..100),
+#       problem_template_id: 1,
+#     }
+#
+#     unless Problem.exists?(problem_data)
+#       prob = Problem.new(problem_data)
+#       prob.save
+#       puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
+#     end
+#
+#   end
+# end
 
-    unless Problem.exists?(problem_data)
-      prob = Problem.new(problem_data)
-      prob.save
-      puts "Created problem #{prob.id} and assigned it to #{assignment[:name]}"
-    end
+# assignment_user_data = {
+#   assignment_id: 1,
+#   user_id: 2, # user jdoe
+# }
+#
+# AssignmentUser.find_or_create_by(assignment_user_data)
+# puts 'Assigned user jdoe to assignment 1'
 
-    problem_template_data = {
-      value: "print \"hello world!\";",
-      major_topic: "algebra",
-      minor_topic: "equations",
-    }
+4.times do |n|
+  major_topics = ['algebra','topology','calculus']
+  minor_topics = ['straight lines','diff eqs','functions']
+  problem_template_data = {
+    value: "Problem Template #{n}",
+    major_topic: major_topics[rand(major_topics.length)-1],
+    minor_topic: minor_topics[rand(minor_topics.length)-1],
+  }
 
-    unless ProblemTemplate.exists?(problem_template_data)
-      prob_template = ProblemTemplate.new(problem_template_data)
-      prob_template.save
-      puts "Created problem template #{prob_template.id}."
-    end
+  unless ProblemTemplate.exists?(problem_template_data)
+    prob_template = ProblemTemplate.new(problem_template_data)
+    prob_template.save
+    puts "Created problem template #{prob_template.id}."
   end
 end
-
-assignment_user_data = {
-  assignment_id: 1,
-  user_id: 2, # user jdoe
-}
-
-AssignmentUser.find_or_create_by(assignment_user_data)
-puts 'Assigned user jdoe to assignment 1'
