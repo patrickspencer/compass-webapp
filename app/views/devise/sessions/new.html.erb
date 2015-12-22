@@ -4,14 +4,27 @@
   <div><%= f.label :'user id' %><br />
   <%= f.text_field :id_string, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+<div>
+  <%= f.label :password %><br />
+  <%= f.password_field :password, autocomplete: "off" %></div>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
   <% end -%>
 
-  <div><%= f.submit "Log in" %></div>
+  <% if Rails.env.development? %>
+    <div><%= f.submit "Log in" %></div>
+    Admin
+    <ul>
+    <li>User id: leuler</li>
+    <li>Password: password</li>
+    </ul>
+    Student
+    <ul>
+    <li>User id: jdoe</li>
+    <li>Password: password</li>
+    </ul>
+  <% end %>
 <% end %>
 
 <%= render "devise/shared/links" %>
