@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h2>Problem Templates</h2>
+</div>
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+<%= link_to "Create new user", controller: "users", action: "new" %>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Major Topic</th>
+    <th>Minor Topic</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @problem_templates.each do |template| %>
+   <tr>
+    <td><%= template.name %></td>
+    <td><%= template.minor_topic %></td>
+    <td><%= template.major_topic %></td>
+    <td><%= template.value %></td>
+    <td><%= link_to "Edit", edit_admin_problem_templates_path(template) %></td>
+    <td>
+      <%= link_to "Delete", admin_problem_tempaltes_path(template), :method => :delete %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
