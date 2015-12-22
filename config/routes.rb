@@ -10,6 +10,7 @@ CompassWebApp::Application.routes.draw do
   namespace :admin do
     resources :assignments
     resources :users
+    resources :problem_templates
   end
 
   get '/student', to: 'student/welcome#index', as: 'student_welcome'
