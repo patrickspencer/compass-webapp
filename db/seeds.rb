@@ -123,22 +123,30 @@ end
 # the second number refers to the course id. 1 = College Algebra
 # 2 = Intermediate Algebra
 
-assignment_list = []
 5.times do |n|
   assignment_data = {
-    name: 'Quiz #{n}',
-    assignment_type_id: 2,
+    :name => "Homework #{n+1}",
+    assignment_type_id: 1,
     course_id: 1,
     max_problem_attempts: 3,
     start_datetime: DateTime.parse('3rd October 2015 06:35'),
     due_datetime: DateTime.parse('20th November 2014 05:00'),
     reduced_credit_due_datetime: DateTime.parse('21st November 2014 05:00')
-  },
+  }
   unless Assignment.exists?(assignment_data)
-    Assignment.find_or_create_by(assignment_data)
+    Assignment.create(assignment_data)
+    puts "Created assignment #{assignment_data[:name]}"
   end
 end
 
+Assignment.all.each do |assignment|
+  puts "assignment #{assignment.name}"
+  assignment_data = {:user_id => 2, :assignment_id => assignment.id}
+  unless AssignmentUser.exists?(assignment_data)
+    AssignmentUser.create(assignment_data)
+    puts "Assigned User #{User.find(2).first_name} #{User.find(2).last_name} to assignment #{assignment.id}"
+  end
+end
 
 5.times do |n|
   problem_data = {

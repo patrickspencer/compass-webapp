@@ -6,11 +6,6 @@
 <% end %>
 <%= link_to "Create new assignment", controller: "assignments", action: "new" %>
 <table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
   <% @assignments.each do |assignment| %>
    <tr>
    <td><%= assignment.name %></td>
