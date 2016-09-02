@@ -11,4 +11,29 @@
     Problem seed: <%= @problem.seed %>
   </li>
 </ul>
+<%= form_for [:student, @answer] do |f| %>
+  <%= f.label :value, 'Answer' %>:
+  <%= f.text_field :value %><br />
+  <%# :value => @problem.id turns into value="answer_problem_id" in html %>
+  <%= f.hidden_field :problem_id, :value => @problem.id %><br />
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
 <%= link_to 'Back', student_problems_path %>
+<table class="table table-striped">
+  <tr>
+    <th>User id</th>
+    <th>Problem id</th>
+    <th>Value</th>
+    <th>Created At</th>
+  </tr>
+  <% @all_answers.each do |answer| %>
+  <tr>
+    <td><%= answer.user_id %></td>
+    <td><%= answer.problem_id %></td>
+    <td><%= answer.value %></td>
+    <td><%= answer.created_at %></td>
+  </tr>
+  <% end %>
+</table>

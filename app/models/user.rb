@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   has_many :assignments, :through => :assignment_users
 
   def assign_to_group(group)
-    self.groups << Group.where(name: group.to_s)
+    self.groups << Group.where(:name => group.to_s)
   end
 
   def list_groups

@@ -12,6 +12,9 @@ module Student
     # GET /student/problems/1.json
     def show
       @problem = Problem.find(params[:id])
+      @answer = Answer.new
+      @all_answers = Answer.where(:user_id => current_user.id,\
+                                  :problem_id => params[:id])
     end
 
   end

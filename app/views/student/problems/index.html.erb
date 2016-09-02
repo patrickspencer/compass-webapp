@@ -20,7 +20,7 @@
         <td><%= problem.user_id %></td>
         <td><%= problem.user.id_string %></td>
         <td><%= problem.seed %></td>
-        <td><%= problem.problem_template.value %></td>
+        <td><%= problem.problem_template.value unless problem.problem_template.nil? %></td>
         <td><%= link_to 'Show', student_problem_path(problem) %></td>
       </tr>
     <% end %>

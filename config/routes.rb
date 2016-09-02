@@ -1,8 +1,9 @@
 CompassWebApp::Application.routes.draw do
-  namespace :student do
-    resources :problems
-  end
   devise_for :users, controllers: {registrations: 'users/registrations'}
+  devise_scope :user do
+    get "/login", to: "devise/sessions#new"
+    get "/logout", to: "devise/sessions#destroy"
+  end
 
   root 'student/problems#index'
 
@@ -17,10 +18,7 @@ CompassWebApp::Application.routes.draw do
   namespace :student do
     resources :assignments
     resources :problems
+    resources :answers
   end
 
-  devise_scope :user do
-    get "/login", to: "devise/sessions#new"
-    get "/logout", to: "devise/sessions#destroy"
-  end
 end
